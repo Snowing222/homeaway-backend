@@ -1,0 +1,29 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  account_id: 1
+  price: 1
+  photo_src: MyString
+  string: MyString
+  description: MyText
+  avail_date_begin: 2021-01-28
+  avail_date_end: 2021-01-28
+  avail_period: 1
+  bedrooms: 1
+  guest_number: 1
+  trade_mode: false
+  rent_mode: false
+
+two:
+  account_id: 1
+  price: 1
+  photo_src: MyString
+  string: MyString
+  description: MyText
+  avail_date_begin: 2021-01-28
+  avail_date_end: 2021-01-28
+  avail_period: 1
+  bedrooms: 1
+  guest_number: 1
+  trade_mode: false
+  rent_mode: false

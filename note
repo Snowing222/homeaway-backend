@@ -1,0 +1,33 @@
+Home away
+-User has_many listings
+ name
+ email
+ password
+
+-Listing belongs_to User/listing has_many photos
+ user_id
+ avail_date_begin
+ avail_Date_end
+ avail_period
+ description
+ price
+ bedrooms
+ guests
+
+
+-Img belongs_to listing
+ listing_id
+ src
+
+phase one:
+-User can list a property on a date range
+-User can delete a listing
+-User can search property avail on a specific date range
+-User can see a specific listing 
+
+phase two
+-Authentication
+
+phase three
+-User can send a request, and make a deal
+
