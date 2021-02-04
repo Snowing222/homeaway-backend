@@ -10,22 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_28_142700) do
+ActiveRecord::Schema.define(version: 2021_01_31_221743) do
 
   create_table "listings", force: :cascade do |t|
-    t.integer "user_id"
+    t.integer "property_id"
     t.integer "price"
-    t.string "photo_src"
-    t.text "description"
     t.date "avail_date_begin"
     t.date "avail_date_end"
     t.integer "avail_period"
-    t.integer "bedroom_number"
-    t.integer "bathroom_number"
-    t.integer "guest_number"
     t.boolean "trade_mode"
     t.boolean "rent_mode"
     t.boolean "strict_mode"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "properties", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "photo_src"
+    t.text "description"
+    t.integer "bedroom_number"
+    t.integer "bathroom_number"
+    t.integer "guest_number"
     t.string "address"
     t.string "state"
     t.integer "zipcode"
@@ -36,6 +42,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_142700) do
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
+    t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

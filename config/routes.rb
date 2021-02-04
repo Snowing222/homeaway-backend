@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
+
   namespace :api do
     namespace :v1 do
       resources :listings
       resources :users do
-        resources :listings
+        resources :listings, only: [:show, :index]
+        resources :properties
       end
     end
   end
