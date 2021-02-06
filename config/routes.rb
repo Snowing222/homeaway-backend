@@ -7,6 +7,8 @@ Rails.application.routes.draw do
         resources :listings, only: [:show, :index]
         resources :properties
       end
+      post "/login", to: "auth#login"
+      get "/auto_login", to: "auth#auto_login"
     end
   end
  
