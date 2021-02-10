@@ -5,5 +5,10 @@ class User < ApplicationRecord
     validates :name, :email, presence: true
     validates :email, uniqueness: true
     has_secure_password
+
+    def active_model_serializer
+        UserSerializer
+    end
+    
     
 end

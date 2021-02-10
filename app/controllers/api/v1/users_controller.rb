@@ -3,11 +3,11 @@ class Api::V1::UsersController < ApplicationController
         if User.find_by(email: params[:email])
             render json: {error: "User exists"}
         else
-            user = User.new(user_params)
-            if user.save
-                payload = {user_id: user.id}
-                token = encode_token(payload)
-                render json: {user: user, jwt: token}
+            @user = User.new(user_params)
+            if @user.save
+                payload = {user_id: @user.id}
+                @token = encode_token(payload)
+                render json: { user: UserSerializer.new(@user), jwt: @token }
             else
                 render json: {errors: user.errors.full_messages}, status: :not_acceptable
             end 
@@ -17,7 +17,7 @@ class Api::V1::UsersController < ApplicationController
     def show
         @user = User.find_by(id: params[:id])
         if @user
-            render json: @user,include: [:listings]
+            render json: @user
         else
             render json: {error: "Cannot find user"}
         end

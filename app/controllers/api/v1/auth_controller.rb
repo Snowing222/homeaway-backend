@@ -1,11 +1,11 @@
 class Api::V1::AuthController < ApplicationController
     def login
-       user = User.find_by(email: login_params[:email])
-       if user 
-          if user.authenticate(login_params[:password])
-             payload = {user_id: user.id}
-             token = encode_token(payload)
-             render json: {user: user, jwt: token}
+       @user = User.find_by(email: login_params[:email])
+       if @user 
+          if @user.authenticate(login_params[:password])
+             payload = {user_id: @user.id}
+             @token = encode_token(payload)
+             render json: { user: UserSerializer.new(@user), jwt: @token }
           else
            
             render json: {errors: "incorrect password, Please try again"}, status: :not_acceptable
@@ -17,9 +17,9 @@ class Api::V1::AuthController < ApplicationController
     end
 
     def auto_login
-     
+        
         if session_user
-          byebug
+          render json: { user: UserSerializer.new(@user) }
        
           
         end

@@ -1,6 +1,7 @@
 class CreateListings < ActiveRecord::Migration[6.0]
   def change
     create_table :listings do |t|
+      t.string :title
       t.integer :property_id
       t.integer :price
       t.date :avail_date_begin

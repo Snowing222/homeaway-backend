@@ -13,6 +13,7 @@
 ActiveRecord::Schema.define(version: 2021_01_31_221743) do
 
   create_table "listings", force: :cascade do |t|
+    t.string "title"
     t.integer "property_id"
     t.integer "price"
     t.date "avail_date_begin"

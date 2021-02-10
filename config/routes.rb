@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :listings
+      resources :properties
       resources :users do
         resources :listings, only: [:show, :index]
         resources :properties

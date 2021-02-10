@@ -12,7 +12,7 @@ class Api::V1::ListingsController < ApplicationController
     def show
         @listing = Listing.find_by(id: params[:id])
         if @listing
-            render json: @listing, include: [:user]
+            render json: @listing
         else
             render json: {error: "Unavailable Listing"}
         end
