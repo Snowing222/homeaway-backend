@@ -24,19 +24,20 @@ class Api::V1::ListingsController < ApplicationController
     end
 
     def create
-        @user = User.find_by(id: params[:id])
-        @listing = @user.listings.build(listing_params)
+    
+        @property = Property.find_by(id: listing_params[:property_id])
+        @listing = @property.listings.build(listing_params)
         if @listing.save
             render json: @listing
         else
-            render json: {error: "Error create Listing"}
+            render json: {error: @listing.errors.full_messages}
         end
     end
 
     private
     
     def listing_params
-        params.require(:listing).permit(:price, :photo_src,:description, :avail_period, :avail_date_begin, :avail_date_end,
+        params.require(:listing).permit(:property_id, :title, :price, :photo_src,:description, :avail_period, :avail_date_begin, :avail_date_end,
                                         :bedroom_number, :bathroom_number, :guest_number, :trade_mode, :strict_mode, :rent_mode,
                                         :address, :state, :zipcode, :create_at, :updated_at)
     end
