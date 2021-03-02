@@ -20,7 +20,12 @@ class Api::V1::ListingsController < ApplicationController
 
     def destroy
         @listing = Listing.find_by(id: params[:id])
-        @listing.destroy
+        if @listing && @listing.destroy
+          render json: @listing
+        else
+          render json: {error: @listing.errors.full_messages}
+        end
+
     end
 
     def create
@@ -34,6 +39,7 @@ class Api::V1::ListingsController < ApplicationController
         end
     end
 
+    
     private
     
     def listing_params

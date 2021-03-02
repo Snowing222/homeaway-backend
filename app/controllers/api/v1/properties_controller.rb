@@ -28,6 +28,16 @@ class Api::V1::PropertiesController < ApplicationController
 
     end
 
+    def destroy
+        @property = Property.find_by(id: params[:id])
+        if @property && @property.destroy
+            render json: @property
+          else
+            render json: {error: @property.errors.full_messages}
+          end
+
+    end
+
     private
     def property_params
         params.require(:property).permit(:user_id, :photosrc, :description, :bedroomNumber, :bathroomNumber, 
