@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 2021_01_31_221743) do
 
   create_table "listings", force: :cascade do |t|
-    t.string "title"
+    t.text "title"
     t.integer "property_id"
     t.integer "price"
     t.date "avail_date_begin"
@@ -28,22 +28,22 @@ ActiveRecord::Schema.define(version: 2021_01_31_221743) do
 
   create_table "properties", force: :cascade do |t|
     t.integer "user_id"
-    t.string "photo_src"
+    t.text "photo_src"
     t.text "description"
     t.integer "bedroom_number"
     t.integer "bathroom_number"
     t.integer "guest_number"
-    t.string "address"
-    t.string "state"
+    t.text "address"
+    t.text "state"
     t.integer "zipcode"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "password_digest"
+    t.text "name"
+    t.text "email"
+    t.text "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
