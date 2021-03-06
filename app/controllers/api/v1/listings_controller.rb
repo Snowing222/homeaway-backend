@@ -1,7 +1,8 @@
 class Api::V1::ListingsController < ApplicationController
     def index 
-        if !search_params[:avail_date_begin].nil?
-            @listings = Listing.filter_listing(search_params)
+        if !!search_params[:avail_date_begin]
+            @search_params = search_params.to_h
+            @listings = Listing.filter_listing(@search_params)
         else
             @listings = Listing.all
         end

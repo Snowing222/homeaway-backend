@@ -23,7 +23,7 @@ class Listing < ApplicationRecord
     end
 
     def self.filter_listing(obj)
-        self.where(obj)
+        self.where('avail_period>=?', obj[:avail_period]).where('avail_date_end>?', obj[:avail_date_end]).where('avail_period>=?', obj[:avail_period])
     end
-
 end
+ 
