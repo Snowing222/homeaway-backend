@@ -92,6 +92,7 @@ l2 = p4.listings.create(
                             avail_period:10,  
                             strict_mode: false, 
                             rent_mode: true, 
-                            trade_mode: false)
+                            trade_mode: true)
 
                     
+                            
