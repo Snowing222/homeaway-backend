@@ -7,6 +7,7 @@ class Api::V1::UsersController < ApplicationController
             if @user.save
                 payload = {user_id: @user.id}
                 @token = encode_token(payload)
+                puts "encoded token", @token
                 render json: { user: UserSerializer.new(@user), jwt: @token }
             else
                 render json: {errors: user.errors.full_messages}, status: :not_acceptable
