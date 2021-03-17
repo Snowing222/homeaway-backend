@@ -13,12 +13,20 @@ class ApplicationController < ActionController::API
             puts "2.token", token
        
             begin 
+                puts "begin to decode"
                 decoded_token = JWT.decode(token, ENV['JWT_TOKEN'])
                 puts "3.decoded_token", decoded_token
                 return decoded_token
-            rescue JWT::DecodeError
-                puts "4.decode error"
-                []
+    
+              rescue JWT::DecodeError
+                [401, { 'Content-Type' => 'text/plain' }, ['A token must be passed.']]
+              rescue JWT::ExpiredSignature
+                [403, { 'Content-Type' => 'text/plain' }, ['The token has expired.']]
+              rescue JWT::InvalidIssuerError
+                [403, { 'Content-Type' => 'text/plain' }, ['The token does not have a valid issuer.']]
+              rescue JWT::InvalidIatError
+                [403, { 'Content-Type' => 'text/plain' }, ['The token does not have a valid "issued at" time.']]
+              end
             end
         end
     end
