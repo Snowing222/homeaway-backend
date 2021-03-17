@@ -13,7 +13,7 @@ class ApplicationController < ActionController::API
             puts "token", token
        
             begin 
-                JWT.decode(token, ENV['JWT_TOKEN'], true, algorithm: 'HS256')
+                JWT.decode(token, ENV['JWT_TOKEN'], true, {algorithm: 'HS256'})
             rescue JWT::DecodeError
                 []
             end
