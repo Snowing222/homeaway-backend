@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::API
     def encode_token(payload)
-        JWT.encode(payload, ENV['JWT_TOKEN'])
+        JWT.encode(payload, ENV['JWT_TOKEN'],'HS256')
     end
 
     def auth_header
@@ -13,7 +13,7 @@ class ApplicationController < ActionController::API
             puts "token", token
        
             begin 
-                JWT.decode(token, ENV['JWT_TOKEN'], true, {algorithm: 'HS256'})
+                JWT.decode(token, ENV['JWT_TOKEN'], true, { algorithm: 'HS256' })
             rescue JWT::DecodeError
                 []
             end
