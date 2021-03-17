@@ -16,12 +16,10 @@ class Api::V1::AuthController < ApplicationController
 
     end
 
-    def auto_login
-        
+    def auto_login 
         if session_user
           render json: { user: UserSerializer.new(@user) }
-       
-          
+          # render json: @user, serializer: UserSerializer
         end
 
     end
