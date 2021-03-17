@@ -3,7 +3,7 @@ class ApplicationController < ActionController::API
     def encode_token(payload)
         JWT.encode(payload, ENV['JWT_TOKEN'])
     end
-    
+
     def auth_header
         request.headers['Authorization']
     end
@@ -12,6 +12,7 @@ class ApplicationController < ActionController::API
         if auth_header
             token = auth_header.split(' ')[1]
             puts "2.token", token
+            puts "ENV_TOKEN ", ENV['JWT_TOKEN']
        
             begin 
                 decoded_token = JWT.decode token, ENV['JWT_TOKEN'], true, { algorithm: 'HS256' }
