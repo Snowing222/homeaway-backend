@@ -17,6 +17,7 @@ class Api::V1::AuthController < ApplicationController
     end
 
     def auto_login 
+        puts "1.hit the route"
         if session_user
           render json: { user: UserSerializer.new(@user) }
         else

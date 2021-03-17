@@ -10,11 +10,12 @@ class ApplicationController < ActionController::API
     def decoded_token
         if auth_header
             token = auth_header.split(' ')[1]
-            puts "token", token
+            puts "2.token", token
        
             begin 
-                JWT.decode(token, "I have a secret", true, {algorithm: 'HS256'})
+                JWT.decode(token, ENV['JWT_TOKEN'], true, {algorithm: 'HS256'})
             rescue JWT::DecodeError
+                puts "3.decode error"
                 []
             end
         end
@@ -24,7 +25,7 @@ class ApplicationController < ActionController::API
 
     def session_user    
         decoded_hash = decoded_token
-        puts "decoded hash", decoded_hash
+        puts "4.decoded hash", decoded_hash
        
         if !decoded_hash.empty?
             user_id = decoded_hash[0]['user_id']
