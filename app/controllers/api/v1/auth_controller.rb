@@ -19,7 +19,8 @@ class Api::V1::AuthController < ApplicationController
     def auto_login 
         if session_user
           render json: { user: UserSerializer.new(@user) }
-          # render json: @user, serializer: UserSerializer
+        else
+          render json: {}, status: 401
         end
 
     end
