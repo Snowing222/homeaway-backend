@@ -31,6 +31,7 @@ class ApplicationController < ActionController::API
             puts "user_id", user_id
             @user = User.find_by(id: user_id)
         else
+            puts "token is empty"
             nil
         end
     end
