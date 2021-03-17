@@ -20,7 +20,7 @@ class Api::V1::AuthController < ApplicationController
         if session_user
           render json: { user: UserSerializer.new(@user) }
         else
-          render json: {}, status: 401
+          render json: {errors: "Cannot find session user"}, status: 401
         end
 
     end
